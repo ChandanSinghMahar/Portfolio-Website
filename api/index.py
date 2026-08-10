@@ -15,7 +15,7 @@ PROJECTS = [
     {
         "title": "Project 2",
         "Languages": "JAVA",
-        "Description": "Mini game for fun",
+        "Description": "Mini game for fun snake and ladder",
     },
     {
         "title": "Project 3",
