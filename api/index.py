@@ -37,3 +37,6 @@ def hello_world():
 @app.route("/api/projects")
 def list_project():
     return jsonify(PROJECTS)
+
+if __name__ == "__main__":
+    app.run(host="0.0.0.0", port=5000, debug=True)
