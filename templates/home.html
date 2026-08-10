@@ -1,7 +1,7 @@
 <!doctype html>
 <html lang="en">
   <head>
-    <title>Portfolio</title>
+    <title>{{author_name}}Portfolio</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
@@ -25,7 +25,11 @@
         inceptos himenaeos.
       </p>
       <h2 class="text-center mt-2 mb-4">Projects</h2>
-      <p>P1, P2</p>
+      <p>
+        {% for project in projects%}
+          {% include 'Projectitem.html' %}
+        {% endfor %}
+      </p>
       <h2 class="text-center mt-2 mb-4">Skills</h2>
       <p>S1, S2</p>
       <div class="text-center">
