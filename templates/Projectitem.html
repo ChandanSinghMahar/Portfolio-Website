@@ -12,7 +12,11 @@
         </div>
         {% endif %}
     </div>
-    <div class="col-3 gap-2 d-grid ">
-        <button type="button" class="btn btn-outline-primary me-md-2">Github</button>
+    <div class="col-3 gap-2 ">
+        {% if 'Link' in project %}
+        <a href="{{project['Link']}}" type="button" class="btn btn-primary">Github</a>
+        {% else %}
+        <a href="https://github.com/ChandanSinghMahar?tab=repositories" type="button" class="btn btn-primary">Github</a>
+        {% endif %}
     </div>
 </div>
