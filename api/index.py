@@ -1,4 +1,6 @@
 from flask import Flask, render_template, jsonify
+from database.database import get_connection
+from psycopg.rows import dict_row
 
 app = Flask(
     __name__,
@@ -39,5 +41,13 @@ def hello_world():
 def list_project():
     return jsonify(PROJECTS)
 
-if __name__ == "__main__":
-    app.run(host="0.0.0.0", port=5000, debug=True)
+# if __name__ == "__main__":
+#     app.run(host="0.0.0.0", port=5000, debug=True)
+conn = get_connection()
+
+with conn.cursor(row_factory=dict_row) as cur:
+    cur.execute("SELECT * FROM projects ORDER BY id ASC")
+    rows  = cur.fetchall()
+    for row in rows:
+        print(row)
+        print(type(row))
