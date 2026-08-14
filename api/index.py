@@ -1,6 +1,5 @@
 from flask import Flask, render_template, jsonify
-from database.database import get_connection
-from psycopg.rows import dict_row
+from database.database import load_projects_from_db
 
 app = Flask(
     __name__,
@@ -8,31 +7,13 @@ app = Flask(
     static_folder="../static"
 )
 
-PROJECTS = [
-    {
-        "title": "Spam filtration",
-        "Languages": "Python",
-        "Description": "Check which email is spam or ham",
-        "Link":"https://github.com/ChandanSinghMahar/Portfolio-Website",
-    },
-    {
-        "title": "Project 2",
-        "Languages": "JAVA",
-        "Description": "Mini game for fun snake and ladder",
-    },
-    {
-        "title": "Project 3",
-        "Languages": "HTML, CSS",
-        "Description": "Web Portfolio",
-    },
-]
-
 
 @app.route("/")
-def hello_world():
+def hello_chandan():
+    projects = load_projects_from_db()
     return render_template(
         "home.html",
-        projects=PROJECTS,
+        projects=projects,
         author_name="Chandan Singh Mahar"
     )
 
@@ -41,13 +22,6 @@ def hello_world():
 def list_project():
     return jsonify(PROJECTS)
 
-# if __name__ == "__main__":
-#     app.run(host="0.0.0.0", port=5000, debug=True)
-conn = get_connection()
+if __name__ == "__main__":
+    app.run(host="0.0.0.0", port=5000, debug=True)
 
-with conn.cursor(row_factory=dict_row) as cur:
-    cur.execute("SELECT * FROM projects ORDER BY id ASC")
-    rows  = cur.fetchall()
-    for row in rows:
-        print(row)
-        print(type(row))

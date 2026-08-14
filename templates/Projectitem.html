@@ -4,11 +4,19 @@
             {{project['title']}}
         </h4>
         <div>
-            <b>Programming Languages</b>: {{project['Languages']}}
+            <b>Programming Languages</b>: {{project['language']}}
+        </div>
+        <div>
+            <b>Libraries</b>: {{project['libraries']}}
         </div>
         {% if 'Description' in project %}
         <div>
             <b>Description</b>: {{project['Description']}}
+        </div>
+        {% endif %}
+        {% if 'framework' in project %}
+        <div>
+            <b>Framework</b>: {{project['framework']}}
         </div>
         {% endif %}
     </div>
