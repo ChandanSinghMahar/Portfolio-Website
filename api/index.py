@@ -22,7 +22,7 @@ def hello_chandan():
 #     projects = load_projects_from_db()
 #     return jsonify(projects)
 
-@app.route("/project/<int:id>")
+@app.route("/api/project/<int:id>")
 def show_project(id):
     project =load_project_from_db(id)
     if not project:
