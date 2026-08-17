@@ -26,7 +26,7 @@
         {% else %}
         <a href="https://github.com/ChandanSinghMahar?tab=repositories" type="button" class="btn btn-primary">Github</a>
         {% endif %} -->
-        <a href="/project/{{project['id']}}" button type="button" class="btn btn-outline-primary">Project</a>
+        <a href="{{url_for('show_project', id=project.id)}}" button type="button" class="btn btn-outline-primary">Project</a>
 
     </div>
 </div>
