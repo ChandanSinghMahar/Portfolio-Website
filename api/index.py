@@ -17,10 +17,10 @@ def hello_chandan():
     )
 
 
-# @app.route("/api/projects")
-# def list_project():
-#     projects = load_projects_from_db()
-#     return jsonify(projects)
+@app.route("/api/projects")
+def list_project():
+    projects = load_projects_from_db()
+    return jsonify(projects)
 
 @app.route("/api/project/<int:id>")
 def show_project(id):
