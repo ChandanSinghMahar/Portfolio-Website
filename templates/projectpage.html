@@ -1,0 +1,36 @@
+<!DOCTYPE>
+<html>
+
+    <head>
+        <title>{{project.title}} - Projects</title>
+        {% include 'bootstrap.html' %}
+        {% include 'banner.html' %}
+    </head>
+    <body>
+        {% include 'nav.html' %}
+        <div class="container">
+            <h1 class="text-center mt-2 mb-4">CSM Portfolio</h1>
+            <div class="row">
+                <h3>{{project.title}}</h3>
+                <h4>Languages</h4>
+                <p>{{project.language}}</p>
+                <h4>Libraries</h4>
+                <ol>
+                    {% for line in project.libraries.split("\n") %}
+                    <li>{{line}}</li>
+                    {% endfor %}
+                </ol>
+                <h4>Frameworks</h4>
+                <p>{{project.framework}}</p>
+                <h4>Description</h4>
+                <ul>
+                    {% for line in project.description.split("\n") %}
+                    <li>{{line}}</li>
+                    {% endfor %}
+                </ul>
+                {% include "footer.html" %}
+            </div>
+            </div>
+    </body>
+
+</html>

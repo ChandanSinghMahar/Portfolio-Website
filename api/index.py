@@ -1,5 +1,5 @@
 from flask import Flask, render_template, jsonify
-from database.database import load_projects_from_db
+from database.database import load_projects_from_db, load_project_from_db
 
 app = Flask(
     __name__,
@@ -14,7 +14,6 @@ def hello_chandan():
     return render_template(
         "home.html",
         projects=projects,
-        author_name="Chandan Singh Mahar"
     )
 
 
@@ -22,6 +21,13 @@ def hello_chandan():
 def list_project():
     projects = load_projects_from_db()
     return jsonify(projects)
+
+@app.route("/project/<id>")
+def show_project(id):
+    project =load_project_from_db(id)
+    if not project:
+        return "Not Found", 404
+    return render_template("projectpage.html",project=project)
 
 if __name__ == "__main__":
     app.run(host="0.0.0.0", port=5000, debug=True)
