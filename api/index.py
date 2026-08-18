@@ -30,9 +30,11 @@ def show_project(id):
         return "Not Found", 404
     return render_template("projectpage.html",project=project)
 
-@app.route("/project/<int:id>/apply")
+@app.route("/project/<int:id>/apply", methods=['post'])
 def apply_to_project(id):
-    data = request.args
+    data = request.form
+    # store this in DB
+    # display and acknowledgement
     return jsonify(data)
 
 # remove it when in production
