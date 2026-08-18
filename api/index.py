@@ -1,5 +1,5 @@
 from flask import Flask, render_template, jsonify, request
-from database.database import load_projects_from_db, load_project_from_db
+from database.database import load_projects_from_db, load_project_from_db, add_application_to_db
 
 app = Flask(
     __name__,
@@ -34,8 +34,9 @@ def show_project(id):
 def apply_to_project(id):
     data = request.form
     project = load_project_from_db(id)
-    # store this in DB
-    # display and acknowledgement
+    
+    add_application_to_db(id, data)
+    
     return render_template('application_submitted.html',
                             application=data,
                             project=project)

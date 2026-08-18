@@ -2,6 +2,7 @@ import psycopg
 import os
 from psycopg.rows import dict_row
 from dotenv import load_dotenv
+from sqlalchemy import text
 
 load_dotenv()
 
@@ -28,3 +29,17 @@ def load_project_from_db(id):
             return None
         else:
             return rows[0]
+        
+def add_application_to_db(project_id, data):
+    conn = get_connection()
+    with conn.cursor() as cur:
+        query = """INSERT INTO applications (project_id, full_name, email, linkedin_url, education, work_experience, resume_url) VALUES(%s, %s, %s, %s, %s, %s, %s) """
+        cur.execute(query, (project_id, 
+                            data['full_name'], 
+                            data['email'], 
+                            data['linkedin_url'],
+                            data['education'],
+                            data['work_experience'],
+                            data['resume_url']
+                            ))
+    conn.commit() 
