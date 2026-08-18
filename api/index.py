@@ -33,9 +33,12 @@ def show_project(id):
 @app.route("/project/<int:id>/apply", methods=['post'])
 def apply_to_project(id):
     data = request.form
+    project = load_project_from_db(id)
     # store this in DB
     # display and acknowledgement
-    return jsonify(data)
+    return render_template('application_submitted.html',
+                            application=data,
+                            project=project)
 
 # remove it when in production
 if __name__ == "__main__":
