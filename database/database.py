@@ -2,7 +2,6 @@ import psycopg
 import os
 from psycopg.rows import dict_row
 from dotenv import load_dotenv
-from sqlalchemy import text
 
 load_dotenv()
 
