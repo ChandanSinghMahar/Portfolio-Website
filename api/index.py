@@ -1,4 +1,4 @@
-from flask import Flask, render_template, jsonify
+from flask import Flask, render_template, jsonify, request
 from database.database import load_projects_from_db, load_project_from_db
 
 app = Flask(
@@ -25,10 +25,17 @@ def list_project():
 @app.route("/project/<int:id>")
 def show_project(id):
     project =load_project_from_db(id)
+
     if not project:
         return "Not Found", 404
     return render_template("projectpage.html",project=project)
 
-# if __name__ == "__main__":
-#     app.run(host="0.0.0.0", port=5000, debug=True)
+@app.route("/project/<int:id>/apply")
+def apply_to_project(id):
+    data = request.args
+    return jsonify(data)
+
+# remove it when in production
+if __name__ == "__main__":
+    app.run(host="0.0.0.0", port=5000, debug=True)
 
